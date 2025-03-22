@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hammad Tariq - Portfolio</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #A020F0;
+            --accent-color: #00AFFF;
+            --dark-bg: #1B1B3A;
+            --card-bg: #252547;
+            --text-light: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            height: 100px;
+            background: rgba(27, 27, 58, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(160, 32, 240, 0.1);
+        }
+
+        .brand-name {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0 10%;
+            margin-top: 100px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-image {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color)) border-box;
+            box-shadow: 0 0 50px rgba(160, 32, 240, 0.3);
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--card-bg);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-card {
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            margin: 40px 0;
+            width: 45%;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(160, 32, 240, 0.1);
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(160, 32, 240, 0.2);
+        }
+
+        .timeline-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: var(--primary-color);
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left-card {
+            left: 0;
+        }
+
+        .right-card {
+            left: 55%;
+        }
+
+        /* Code Animation Section */
+        .code-section {
+            padding: 100px 10%;
+            background: rgba(27, 27, 58, 0.8);
+        }
+
+        .code-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(160, 32, 240, 0.2);
+            box-shadow: 0 0 50px rgba(160, 32, 240, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 150px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                width: 300px;
+                height: 300px;
+                margin-top: 50px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-card {
+                width: 100%;
+                left: 0;
+            }
+
+            .timeline-card::after {
+                left: 15px;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header> 
+        <nav>
+            <div class="brand-name">HT</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <h1>
+                    Transforming Ideas<br>
+                    Into <span class="gradient-text">Digital Reality</span>
+                </h1>
+                <p class="text-gray-400">
+                    Full Stack Developer specializing in modern web applications.
+                    Passionate about creating efficient, scalable, and user-friendly solutions.
+                </p>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
+                <img src="ProfileMe.jpg" alt="Hammad Tariq" class="profile-image">
+            </div>
+        </section>
+
+        <!-- Code Animation Section -->
+        <section class="code-section" data-aos="fade-up">
+            <div class="code-container">
+                <!-- Insert your SVG code here -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                  <!-- Background -->
+                  <rect width="400" height="300" fill="#1e1e2e"/>
+                  
+                  <!-- Code editor frame -->
+                  <rect x="50" y="50" width="300" height="200" rx="5" fill="#282a36"/>
+                  
+                  <!-- Editor title bar -->
+                  <rect x="50" y="50" width="300" height="25" rx="5" fill="#44475a"/>
+                  <circle cx="65" cy="62.5" r="5" fill="#ff5555"/>
+                  <circle cx="85" cy="62.5" r="5" fill="#ffb86c"/>
+                  <circle cx="105" cy="62.5" r="5" fill="#50fa7b"/>
+                  
+                  <!-- Code lines -->
+                  <g id="codelines">
+                    <!-- Line 1 -->
+                    <text x="70" y="100" fill="#ff79c6" font-family="monospace" font-size="12">
+                      <tspan>function</tspan>
+                      <tspan fill="#50fa7b"> animate</tspan>
+                      <tspan fill="#f8f8f2">()</tspan>
+                      <tspan fill="#f8f8f2"> {</tspan>
+                    </text>
+                    
+                    <!-- Line 2 -->
+                    <text x="70" y="120" fill="#f8f8f2" font-family="monospace" font-size="12">
+                      <tspan>  </tspan>
+                      <tspan fill="#ff79c6">const</tspan>
+                      <tspan fill="#f8f8f2"> data = </tspan>
+                      <tspan fill="#bd93f9">getData</tspan>
+                      <tspan fill="#f8f8f2">();</tspan>
+                    </text>
+                    
+                    <!-- Line 3 -->
+                    <text x="70" y="140" fill="#f8f8f2" font-family="monospace" font-size="12">
+                      <tspan>  </tspan>
+                      <tspan fill="#ff79c6">if</tspan>
+                      <tspan fill="#f8f8f2"> (data</tspan>
+                      <tspan fill="#ff79c6">.</tspan>
+                      <tspan fill="#50fa7b">ready</tspan>
+                      <tspan fill="#f8f8f2">) {</tspan>
+                    </text>
+                    
+                    <!-- Line 4 -->
+                    <text x="70" y="160" fill="#f8f8f2" font-family="monospace" font-size="12">
+                      <tspan>    </tspan>
+                      <tspan fill="#bd93f9">render</tspan>
+                      <tspan fill="#f8f8f2">(data);</tspan>
+                    </text>
+                    
+                    <!-- Line 5 -->
+                    <text x="70" y="180" fill="#f8f8f2" font-family="monospace" font-size="12">
+                      <tspan>  }</tspan>
+                    </text>
+                    
+                    <!-- Line 6 -->
+                    <text x="70" y="200" fill="#f8f8f2" font-family="monospace" font-size="12">
+                      <tspan>}</tspan>
+                    </text>
+                  </g>
+                  
+                  <!-- Cursor -->
+                  <rect id="cursor" x="158" y="150" width="2" height="14" fill="#f8f8f2">
+                    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+                    <animate attributeName="x" values="158;180;215;158" dur="6s" repeatCount="indefinite" />
+                    <animate attributeName="y" values="150;150;190;150" dur="6s" repeatCount="indefinite" />
+                  </rect>
+                  
+                  <!-- Code typing animation -->
+                  <g id="newcode" opacity="0">
+                    <text x="70" y="220" fill="#f8f8f2" font-family="monospace" font-size="12">
+                      <tspan fill="#bd93f9">animate</tspan>
+                      <tspan fill="#f8f8f2">();</tspan>
+                    </text>
+                    <animate attributeName="opacity" values="0;0;0;0.5;1" dur="6s" repeatCount="indefinite" />
+                  </g>
+                  
+                  <!-- Brackets highlight animation -->
+                  <rect id="bracket-highlight1" x="68" y="98" width="10" height="14" fill="#44475a" opacity="0">
+                    <animate attributeName="opacity" values="0;0.3;0;0;0" dur="6s" repeatCount="indefinite" />
+                  </rect>
+                  <rect id="bracket-highlight2" x="70" y="198" width="10" height="14" fill="#44475a" opacity="0">
+                    <animate attributeName="opacity" values="0;0;0.3;0;0" dur="6s" repeatCount="indefinite" />
+                  </rect>
+                  
+                  <!-- Data flow animation -->
+                  <g id="dataflow">
+                    <path d="M200,120 Q230,140 200,160" stroke="#8be9fd" stroke-width="2" fill="none" opacity="0">
+                      <animate attributeName="opacity" values="0;0;0.7;0.3;0" dur="6s" repeatCount="indefinite" />
+                    </path>
+                    <circle cx="200" cy="120" r="3" fill="#8be9fd" opacity="0">
+                      <animate attributeName="opacity" values="0;0;0.7;0;0" dur="6s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="200" cy="160" r="3" fill="#8be9fd" opacity="0">
+                      <animate attributeName="opacity" values="0;0;0;0.7;0" dur="6s" repeatCount="indefinite" />
+                    </circle>
+                  </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience-section" id="experience">
+            <h2 class="section-title" data-aos="fade-up">Professional Journey</h2>
+            <div class="timeline">
+                <div class="timeline-card left-card" data-aos="fade-up">
+                    <h3>Senior Developer @TechCo</h3>
+                    <p class="text-gray-400">2021-Present</p>
+                    <p>Led team in developing enterprise-level applications using React & Node.js</p>
+                </div>
+                <div class="timeline-card right-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Full Stack Developer @StartUp</h3>
+                    <p class="text-gray-400">2019-2021</p>
+                    <p>Developed MVP for SaaS platform with 10k+ active users</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 1000,
+            easing: 'ease-in-out',
+        });
+    </script>
+</body>
+</html>
